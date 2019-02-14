@@ -1,0 +1,35 @@
+{
+  "name": "codexten/yii-core",
+  "description": "eii",
+  "keywords": [
+    "yii2"
+  ],
+  "type": "library",
+  "license": "BSD-3-Clause",
+  "require": {
+    "yiisoft/yii2": "~2.0",
+    "vlucas/phpdotenv": "v2.5.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "codexten\\yii\\": "src"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "2.0.x-dev"
+    },
+    "sconfig-plugin": {
+      "params": "src/config/params.php",
+      "defines": "src/config/defines.php",
+      "helpers": "src/config/helpers.php",
+      "mailer": "src/config/mailer.php",
+      "i18n": "src/config/i18n.php",
+      "core": "src/config/core.php",
+      "migrationNamespaces": "src/config/migrationNamespaces.php",
+      "console": "src/config/console.php",
+      "grid": "src/grid/config/grid.php",
+      "builder": "src/builder/config/builder.php"
+    }
+  }
+}
