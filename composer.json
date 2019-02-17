@@ -1,14 +1,16 @@
 {
   "name": "codexten/yii-core",
-  "description": "eii",
+  "description": "Yii framework extended for Codexten",
   "keywords": [
-    "yii2"
+    "yii2",
+    "codexten"
   ],
   "type": "library",
   "license": "BSD-3-Clause",
   "require": {
     "yiisoft/yii2": "~2.0",
-    "vlucas/phpdotenv": "v2.5.1"
+    "vlucas/phpdotenv": "v2.5.1",
+    "codexten/docs": "~2.0"
   },
   "autoload": {
     "psr-4": {
@@ -19,17 +21,8 @@
     "branch-alias": {
       "dev-master": "2.0.x-dev"
     },
-    "sconfig-plugin": {
-      "params": "src/config/params.php",
-      "defines": "src/config/defines.php",
-      "helpers": "src/config/helpers.php",
-      "mailer": "src/config/mailer.php",
-      "i18n": "src/config/i18n.php",
-      "core": "src/config/core.php",
-      "migrationNamespaces": "src/config/migrationNamespaces.php",
-      "console": "src/config/console.php",
-      "grid": "src/grid/config/grid.php",
-      "builder": "src/builder/config/builder.php"
+    "config-plugin": {
+      "core": "src/config/core.php"
     }
   }
 }
