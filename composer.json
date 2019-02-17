@@ -22,6 +22,7 @@
       "dev-master": "2.0.x-dev"
     },
     "config-plugin": {
+      "i18n": "src/config/i18n.php",
       "core": "src/config/core.php"
     }
   }
