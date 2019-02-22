@@ -8,7 +8,7 @@
   "type": "library",
   "license": "BSD-3-Clause",
   "require": {
-    "yiisoft/yii2": "~2.0",
+    "yiisoft/yii2": "2.0.16",
     "vlucas/phpdotenv": "v2.5.1",
     "codexten/docs": "~2.0"
   },
