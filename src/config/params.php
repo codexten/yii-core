@@ -7,5 +7,10 @@
  */
 
 return [
+    //db
+    'db.dsn' => $_ENV['DB_DSN'],
+    'db.username' => $_ENV['DB_USERNAME'],
+    'db.password' => $_ENV['DB_PASSWORD'],
+
     'cookieValidationKey' => null,
 ];

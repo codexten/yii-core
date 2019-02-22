@@ -22,6 +22,7 @@
       "dev-master": "2.0.x-dev"
     },
     "config-plugin": {
+      "params": "src/config/params.php",
       "i18n": "src/config/i18n.php",
       "mailer": "src/config/mailer.php",
       "core": "src/config/core.php"

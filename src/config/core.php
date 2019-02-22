@@ -8,9 +8,9 @@
 
 return [
     'params' => $params + [
-            'mail.sender' => [
-                $params['mail.sender.email'] => $params['mail.sender.name'],
-            ],
+//            'mail.sender' => [
+//                $params['mail.sender.email'] => $params['mail.sender.name'],
+//            ],
         ],
     'aliases' => $aliases + [
             '@bower' => '@vendor/bower-asset',
@@ -19,4 +19,7 @@ return [
             '@vendor/npm' => '@vendor/npm-asset',
             '@_runtime' => '@root/runtime',
         ],
+    'components' => [
+        'db' => require(__DIR__ . '/_db.php'),
+    ],
 ];
