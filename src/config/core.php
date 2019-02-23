@@ -7,6 +7,16 @@
  */
 
 return [
+    'id' => $params['app.id'],
+    'name' => $params['app.name'],
+    'language' => $params['app.language'],
+    'basePath' => dirname(__DIR__),
+    'vendorPath' => '@root/vendor',
+    'bootstrap' => array_filter([
+        'log' => 'log',
+    ]),
+    'viewPath' => '@app/views',
+    'layoutPath' => '@app/views/layouts',
     'params' => $params + [
 //            'mail.sender' => [
 //                $params['mail.sender.email'] => $params['mail.sender.name'],

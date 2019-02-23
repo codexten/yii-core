@@ -7,6 +7,11 @@
  */
 
 return [
+    //app
+    'app.id' => 'yii-site',
+    'app.name' => 'Yii Site',
+    'app.language' => 'en',
+
     //db
     'db.dsn' => $_ENV['DB_DSN'],
     'db.username' => $_ENV['DB_USERNAME'],
