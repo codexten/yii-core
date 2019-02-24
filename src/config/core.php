@@ -14,6 +14,7 @@ return [
     'vendorPath' => '@root/vendor',
     'bootstrap' => array_filter([
         'log' => 'log',
+        'eventManager',
     ]),
     'viewPath' => '@app/views',
     'layoutPath' => '@app/views/layouts',
@@ -31,5 +32,31 @@ return [
         ],
     'components' => [
         'db' => require(__DIR__ . '/_db.php'),
+        'eventManager' => [
+            'class' => \codexten\yii\components\EventManager::class,
+        ],
+//        'place' => [
+//            'class' => 'codexten\yii\place\Places',
+//            // TODO : temp fix, find good solution
+//            'key' => $params['google.apiKey'],
+//        ],
+        'cache' => [
+            'class' => \yii\caching\FileCache::class,
+        ],
+        'i18n' => $i18n,
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'itemTable' => '{{%rbac_auth_item}}',
+            'itemChildTable' => '{{%rbac_auth_item_child}}',
+            'assignmentTable' => '{{%rbac_auth_assignment}}',
+            'ruleTable' => '{{%rbac_auth_rule}}',
+        ],
+    ],
+    'container' => [
+        'definitions' => [
+            \yii\db\ActiveRecord::class => [
+                'class' => \codexten\yii\db\ActiveRecord::class,
+            ],
+        ],
     ],
 ];

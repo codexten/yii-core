@@ -23,9 +23,13 @@
     },
     "config-plugin": {
       "params": "src/config/params.php",
+      "defines": "src/config/defines.php",
+      "helpers": "src/config/helpers.php",
       "i18n": "src/config/i18n.php",
-      "mailer": "src/config/mailer.php",
-      "core": "src/config/core.php"
+      "core": "src/config/core.php",
+      "migrationNamespaces": "src/config/migrationNamespaces.php",
+      "console": "src/config/console.php",
+      "grid": "src/grid/config/grid.php"
     }
   }
 }

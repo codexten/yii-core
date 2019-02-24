@@ -18,4 +18,13 @@ return [
     'db.password' => $_ENV['DB_PASSWORD'],
 
     'cookieValidationKey' => null,
+
+//    'mailer' => 'gmail',
+//    'mailer.enabled' => YII_ENV === 'prod' ? true : null,
+//
+//    'mail.sender.email' => 'developer.entero@gmail.com',
+//    'mail.sender.name' => 'entero developer',
+//
+//    'google.apiKey' => isset($_ENV['GOOGLE_API_KEY']) ? $_ENV['GOOGLE_API_KEY'] : '',
+
 ];
