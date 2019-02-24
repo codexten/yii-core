@@ -26,6 +26,7 @@
       "defines": "src/config/defines.php",
       "helpers": "src/config/helpers.php",
       "i18n": "src/config/i18n.php",
+      "mailer": "src/config/mailer.php",
       "core": "src/config/core.php",
       "migrationNamespaces": "src/config/migrationNamespaces.php",
       "console": "src/config/console.php",
