@@ -1,10 +1,9 @@
 <?php
 namespace codexten\yii\base;
 
-use entero\helpers\ArrayHelper;
-use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\Controller;
+use codexten\yii\helpers\ArrayHelper;
 
 /**
  * Trait ModuleTrait

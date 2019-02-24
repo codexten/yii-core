@@ -13,5 +13,15 @@ return [
             'class' => \yii\i18n\PhpMessageSource::class,
             'basePath' => '@codexten/yii/messages',
         ],
+        '*' => [
+            'class' => yii\i18n\PhpMessageSource::class,
+            'basePath' => '@codexten/yii/messages',
+//            'fileMap' => [
+//                'common' => 'common.php',
+//                'backend' => 'backend.php',
+//                'frontend' => 'frontend.php',
+//            ],
+//            'on missingTranslation' => [backend\modules\translation\Module::class, 'missingTranslation'],
+        ],
     ],
 ];
