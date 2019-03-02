@@ -40,9 +40,9 @@ return [
 //            // TODO : temp fix, find good solution
 //            'key' => $params['google.apiKey'],
 //        ],
-        'cache' => [
-            'class' => \yii\caching\FileCache::class,
-        ],
+//        'cache' => [
+//            'class' => \yii\caching\FileCache::class,
+//        ],
         'i18n' => $i18n,
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
