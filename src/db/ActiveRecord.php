@@ -9,6 +9,7 @@
 namespace codexten\yii\db;
 
 use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * Class ActiveRecord
@@ -32,6 +33,16 @@ class ActiveRecord extends \yii\db\ActiveRecord
             }
             if ($this->hasProperty('updated_by')) {
                 $behaviors['blameable']['updatedByAttribute'] = 'updated_by';
+            }
+        }
+
+        if ($this->hasProperty('created_at') || $this->hasProperty('updated_at')) {
+            $behaviors['blameable'] = ['class' => TimestampBehavior::class,];
+            if ($this->hasProperty('created_at')) {
+                $behaviors['blameable']['createdAtAttribute'] = 'created_at';
+            }
+            if ($this->hasProperty('updated_at')) {
+                $behaviors['blameable']['updatedAtAttribute'] = 'updated_at';
             }
         }
 
