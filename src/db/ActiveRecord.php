@@ -90,5 +90,15 @@ class ActiveRecord extends \yii\db\ActiveRecord
         return $data;
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function delete()
+    {
+        if (!$this->canDelete()) {
+            return false;
+        }
 
+        return parent::delete();
+    }
 }
