@@ -23,8 +23,8 @@ return [
 //                $params['mail.sender.email'] => $params['mail.sender.name'],
 //            ],
         ],
-//    'aliases' => $aliases + [
-    'aliases' => [
+        'aliases' => $aliases + [
+//    'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
         '@vendor/bower' => '@vendor/bower-asset',
