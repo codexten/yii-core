@@ -28,3 +28,5 @@ require_once VENDOR_DIR . '/yiisoft/yii2/Yii.php';
 
 Yii::setAlias('@root', ROOT_DIR);
 Yii::setAlias('@vendor', VENDOR_DIR);
+
+require_once __DIR__ . '/helpers.php';
