@@ -23,6 +23,7 @@
     },
     "config-plugin": {
       "params": "src/config/params.php",
+      "required": "src/config/required.php",
       "defines": "src/config/defines.php",
       "i18n": "src/config/i18n.php",
       "mailer": "src/config/mailer.php",
