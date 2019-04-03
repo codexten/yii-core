@@ -20,6 +20,9 @@ if (!defined('VENDOR_DIR') || !file_exists(VENDOR_DIR . '/autoload.php')) {
 
 require_once VENDOR_DIR . '/autoload.php';
 
+$dotenv = new Dotenv\Dotenv(ROOT_DIR);
+$dotenv->load();
+
 require_once hiqdev\composer\config\Builder::path('defines');
 require_once VENDOR_DIR . '/yiisoft/yii2/Yii.php';
 
