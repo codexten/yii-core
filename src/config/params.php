@@ -11,11 +11,12 @@ return [
     'app.id' => 'yii-site',
     'app.name' => 'Yii Site',
     'app.language' => 'en',
+    'app.env' => @$_ENV['ENV'],
 
     //db
-    'db.dsn' => $_ENV['DB_DSN'],
-    'db.username' => $_ENV['DB_USERNAME'],
-    'db.password' => $_ENV['DB_PASSWORD'],
+    'db.dsn' => @$_ENV['DB_DSN'],
+    'db.username' => @$_ENV['DB_USERNAME'],
+    'db.password' => @$_ENV['DB_PASSWORD'],
 
     'cookieValidationKey' => null,
 
