@@ -49,7 +49,6 @@ class ActiveRecord extends \yii\db\ActiveRecord
         return $behaviors;
     }
 
-
     public function canCreate()
     {
         return true;
