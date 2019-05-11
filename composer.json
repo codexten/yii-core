@@ -27,7 +27,11 @@
       "defines": "src/config/defines.php",
       "i18n": "src/config/i18n.php",
       "mailer": "src/config/mailer.php",
-      "core": "src/config/core.php",
+      "base": "src/config/base.php",
+      "core": [
+        "$base",
+        "src/config/core.php"
+      ],
       "migrationNamespaces": "src/config/migrationNamespaces.php",
       "console": "src/config/console.php",
       "grid": "src/grid/config/grid.php"

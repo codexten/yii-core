@@ -7,10 +7,8 @@
  */
 
 return [
-    'id' => $params['app.id'],
     'name' => $params['app.name'],
     'language' => $params['app.language'],
-    'basePath' => dirname(__DIR__),
     'vendorPath' => '@root/vendor',
     'bootstrap' => array_filter([
         'log' => 'log',
@@ -23,14 +21,6 @@ return [
 //                $params['mail.sender.email'] => $params['mail.sender.name'],
 //            ],
         ],
-        'aliases' => $aliases + [
-//    'aliases' => [
-        '@bower' => '@vendor/bower-asset',
-        '@npm' => '@vendor/npm-asset',
-        '@vendor/bower' => '@vendor/bower-asset',
-        '@vendor/npm' => '@vendor/npm-asset',
-        '@_runtime' => '@root/runtime',
-    ],
     'components' => [
         'db' => require(__DIR__ . '/_db.php'),
         'eventManager' => [
