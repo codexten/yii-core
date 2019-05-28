@@ -10,6 +10,7 @@ namespace codexten\yii\place\Client;
 use codexten\yii\helpers\ArrayHelper;
 use enyii\helpers\Json;
 use GuzzleHttp\Exception\RequestException;
+use InvalidArgumentException;
 
 /**
  * Class Place handles place details requests and common actions.
@@ -50,7 +51,7 @@ class PlaceClient extends AbstractClient
      * either a [[Search::text]], [[Search::nearby]], [[Search::radar]] or [[Place::details]] request.
      * @param array $params optional parameters.
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @throws RequestException if the request fails
      *
      * @return mixed|null
@@ -58,7 +59,7 @@ class PlaceClient extends AbstractClient
     public function photo($reference, $params = [])
     {
         if (!isset($params['maxheight']) && !isset($params['maxwidth'])) {
-            throw new \InvalidArgumentException('You must set "maxheight" or "maxwidth".');
+            throw new InvalidArgumentException('You must set "maxheight" or "maxwidth".');
         }
         $params['photoreference'] = $reference;
         $params['key'] = $this->key;
@@ -82,7 +83,7 @@ class PlaceClient extends AbstractClient
      * @param string $language The language in which the place's name is being reported.
      * @param array $params The extra recommended but not required parameters (ie address, phone_number, and website)
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @throws RequestException if the request fails
      *
      * @return array
@@ -90,7 +91,7 @@ class PlaceClient extends AbstractClient
     public function add(array $location, $name, array $types, $accuracy, $language = 'en', array $params = [])
     {
         if (strlen($name) > 255) {
-            throw new \InvalidArgumentException('"$name" cannot be larger than 255 chars');
+            throw new InvalidArgumentException('"$name" cannot be larger than 255 chars');
         }
         $types = (array)$types;
         $data = $params;

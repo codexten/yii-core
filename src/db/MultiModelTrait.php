@@ -8,6 +8,9 @@
 
 namespace codexten\yii\db;
 
+use Exception;
+use Throwable;
+use Yii;
 use yii\base\Model;
 use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
@@ -32,7 +35,7 @@ trait MultiModelTrait
 
         $data = [];
         $isSaved = true;
-        $transaction = \Yii::$app->db->beginTransaction();
+        $transaction = Yii::$app->db->beginTransaction();
         try {
             foreach ($modelsGroups as $type => $models) {
                 foreach ($models as $name => $relation) {
@@ -60,10 +63,10 @@ trait MultiModelTrait
                     }
                 }
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $transaction->rollBack();
             throw $e;
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             $transaction->rollBack();
             throw $e;
         }
@@ -81,7 +84,7 @@ trait MultiModelTrait
         reset($models);
         $name = key($models);
         /* @var $model ActiveRecord */
-        $model = \Yii::createObject([
+        $model = Yii::createObject([
             'class' => $models[$name]['modelClass'],
         ]);
         $processedModels['primary'][$name] = $models[$name];
@@ -128,7 +131,7 @@ trait MultiModelTrait
     {
         $attributeLabels = [];
         foreach ($this->models() as $name => $relation) {
-            $model = \Yii::createObject([
+            $model = Yii::createObject([
                 'class' => $relation['modelClass'],
             ]);
             foreach ($model->attributeLabels() as $attribute => $label) {
@@ -147,7 +150,7 @@ trait MultiModelTrait
         $attributeLabels = [];
         foreach ($this->models() as $name => $relation) {
             /* @var $model Model */
-            $model = \Yii::createObject([
+            $model = Yii::createObject([
                 'class' => $relation['modelClass'],
             ]);
             foreach ($model->attributeHints() as $attribute => $hint) {

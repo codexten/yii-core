@@ -11,11 +11,16 @@ use codexten\yii\helpers\ColorHelper;
 use codexten\yii\module\user\models\User;
 use yii\base\InvalidConfigException;
 use yii\base\InvalidParamException;
+use yii\base\Module;
 use yii\db\Transaction;
 use yii\di\NotInstantiableException;
+use yii\web\Application;
+use yii\web\AssetBundle;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 /**
- * @return BaseApplication|ConsoleApplication|WebApplication|\yii\console\Application|\yii\web\Application
+ * @return BaseApplication|ConsoleApplication|WebApplication|\yii\console\Application|Application
  */
 function app()
 {
@@ -73,7 +78,7 @@ function render($view, $params = [])
  * @param $url
  * @param int $statusCode
  *
- * @return \yii\web\Response
+ * @return Response
  */
 function redirect($url, $statusCode = 302)
 {
@@ -81,7 +86,7 @@ function redirect($url, $statusCode = 302)
 }
 
 /**
- * @param $form \yii\widgets\ActiveForm
+ * @param $form ActiveForm
  * @param $model
  * @param $attribute
  * @param array $inputOptions
@@ -138,7 +143,7 @@ if (!function_exists('env')) {
  * Returns the actual URL for the specified asset.
  * The actual URL is obtained by prepending either [[AssetBundle::$baseUrl]] or [[AssetManager::$baseUrl]] to the given asset path.
  *
- * @param \yii\web\AssetBundle $bundle the asset bundle which the asset file belongs to
+ * @param AssetBundle $bundle the asset bundle which the asset file belongs to
  * @param string $asset the asset path. This should be one of the assets listed in [[AssetBundle::$js]] or [[AssetBundle::$css]].
  *
  * @return string the actual URL for the specified asset.
@@ -269,7 +274,7 @@ function isAjax()
  * use ID path relative to this module (e.g. `admin/content`).
  * @param bool $load whether to load the module if it is not yet loaded.
  *
- * @return \yii\base\Module|null the module instance, `null` if the module does not exist.
+ * @return Module|null the module instance, `null` if the module does not exist.
  * @see hasModule()
  */
 function getModule($id, $load = true)
@@ -600,7 +605,7 @@ function getImageUrl($path)
  * ```
  *
  * @param array|object $array array or object to extract value from
- * @param string|\Closure|array $key key name of the array element, an array of keys or property name of the object,
+ * @param string|Closure|array $key key name of the array element, an array of keys or property name of the object,
  * or an anonymous function returning the value. The anonymous function signature should be:
  * `function($array, $defaultValue)`.
  * The possibility to pass an array of keys is available since version 2.0.4.
@@ -659,7 +664,7 @@ function arrayGetValue($array, $key, $default = null)
  */
 function createObject($type, array $params = [])
 {
-    return \Yii::createObject($type, $params);
+    return Yii::createObject($type, $params);
 }
 
 /**

@@ -31,7 +31,7 @@ class AbstractClient
      */
     protected $key;
     /**
-     * @var \GuzzleHttp\Client a client to make requests to the API
+     * @var HttpClient a client to make requests to the API
      */
     protected $guzzle;
 
@@ -121,7 +121,7 @@ class AbstractClient
     /**
      * Returns the guzzle client.
      *
-     * @return \GuzzleHttp\Client
+     * @return HttpClient
      */
     protected function getGuzzleClient()
     {

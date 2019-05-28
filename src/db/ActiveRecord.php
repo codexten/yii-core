@@ -15,6 +15,8 @@ use yii\behaviors\TimestampBehavior;
  * Class ActiveRecord
  *
  * @package entero\db
+ *
+ * @property array $meta
  */
 class ActiveRecord extends \yii\db\ActiveRecord
 {
@@ -38,6 +40,9 @@ class ActiveRecord extends \yii\db\ActiveRecord
 
         if ($this->hasProperty('created_at') || $this->hasProperty('updated_at')) {
             $behaviors['blameable'] = ['class' => TimestampBehavior::class,];
+            $behaviors['blameable']['updatedAtAttribute'] = false;
+            $behaviors['blameable']['createdAtAttribute'] = false;
+
             if ($this->hasProperty('created_at')) {
                 $behaviors['blameable']['createdAtAttribute'] = 'created_at';
             }
@@ -69,6 +74,10 @@ class ActiveRecord extends \yii\db\ActiveRecord
         return true;
     }
 
+    /**
+     * @deprecated since 2.1.0
+     * @return array
+     */
     public function getMeta()
     {
         return [
@@ -79,6 +88,14 @@ class ActiveRecord extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @param array $fields
+     * @param array $expand
+     * @param bool $recursive
+     *
+     * @return array
+     * @deprecated 2.1.0
+     */
     public function toArray(array $fields = [], array $expand = [], $recursive = true)
     {
         $data = parent::toArray($fields, $expand, $recursive);

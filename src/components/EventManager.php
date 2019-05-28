@@ -9,6 +9,7 @@
 namespace codexten\yii\components;
 
 
+use yii\base\Application;
 use yii\base\BootstrapInterface;
 use yii\base\Component;
 use yii\base\Event;
@@ -30,7 +31,7 @@ class EventManager extends Component implements BootstrapInterface
     public $events = [];
 
     /**
-     * @param \yii\base\Application $app
+     * @param Application $app
      */
     public function bootstrap($app)
     {

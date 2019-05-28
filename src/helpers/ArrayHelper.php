@@ -5,6 +5,7 @@ namespace codexten\yii\helpers;
 
 use function array_keys;
 use function rand;
+use stdClass;
 
 class ArrayHelper extends \yii\helpers\ArrayHelper
 {
@@ -93,7 +94,7 @@ class ArrayHelper extends \yii\helpers\ArrayHelper
 
     public static function convertToObject($array)
     {
-        $object = new \stdClass();
+        $object = new stdClass();
         foreach ($array as $key => $value) {
             if (is_array($value)) {
                 $value = static::convertToObject($value);

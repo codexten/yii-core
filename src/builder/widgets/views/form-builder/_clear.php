@@ -6,9 +6,10 @@
  * Time: 12:08 PM
  */
 
+use codexten\yii\builder\widgets\FormBuilder;
 use kartik\form\ActiveForm;
 
-/* @var $widget \codexten\yii\builder\widgets\FormBuilder */
+/* @var $widget FormBuilder */
 /* @var $content string */
 
 $widget = $this->context;

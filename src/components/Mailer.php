@@ -12,6 +12,7 @@ use enyii\email\common\models\EmailTemplate;
 use function str_replace;
 use Yii;
 use yii\base\Exception;
+use yii\mail\MessageInterface;
 
 /**
  * Class Mailer
@@ -114,7 +115,7 @@ class Mailer extends Component
     }
 
     /**
-     * @return \yii\mail\MessageInterface
+     * @return MessageInterface
      */
     public function getMessage()
     {

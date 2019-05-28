@@ -8,6 +8,7 @@
 namespace codexten\yii\behaviors;
 
 use Exception;
+use yii\behaviors\AttributeBehavior;
 use yii\db\BaseActiveRecord;
 use yii\db\StaleObjectException;
 use eii\models\AutoNumber as AutoNumberModel;
@@ -32,7 +33,7 @@ use eii\models\AutoNumber as AutoNumberModel;
  *
  * @author Jomon Johnson <jomon@entero.in>
  */
-class Autonumber extends \yii\behaviors\AttributeBehavior
+class Autonumber extends AttributeBehavior
 {
     /**
      * @var integer digit number of auto number

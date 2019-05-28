@@ -11,6 +11,7 @@ namespace codexten\yii\builder\widgets;
 use codexten\yii\web\Widget;
 use kartik\builder\Form;
 use kartik\form\ActiveForm;
+use ReflectionException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Inflector;
 
@@ -97,7 +98,7 @@ class FormBuilder extends Widget
      *  - fields : array
      *
      * @return string
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function section(array $options = [])
     {

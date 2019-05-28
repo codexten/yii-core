@@ -2,6 +2,11 @@
 
 namespace codexten\yii\helpers;
 
+use FilesystemIterator;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use RegexIterator;
+
 class FileHelper extends \yii\helpers\FileHelper
 {
     public static function create($folder, $mode = 0777, $recursive = true)
@@ -38,15 +43,15 @@ class FileHelper extends \yii\helpers\FileHelper
         $folder,
         $pattern = null,
         $depth = -1,
-        $flags = \RecursiveIteratorIterator::SELF_FIRST
+        $flags = RecursiveIteratorIterator::SELF_FIRST
     ) {
-        $dir_iter = new \RecursiveDirectoryIterator($folder, \FilesystemIterator::SKIP_DOTS);
-        $flat_iter = new \RecursiveIteratorIterator($dir_iter, $flags);
+        $dir_iter = new RecursiveDirectoryIterator($folder, FilesystemIterator::SKIP_DOTS);
+        $flat_iter = new RecursiveIteratorIterator($dir_iter, $flags);
         $flat_iter->setMaxDepth($depth);
         if (is_null($pattern)) {
             return $flat_iter;
         } else {
-            return new \RegexIterator($flat_iter, $pattern);
+            return new RegexIterator($flat_iter, $pattern);
         }
     }
     
@@ -57,7 +62,7 @@ class FileHelper extends \yii\helpers\FileHelper
     
     public static function deleteR($folder, $pattern = null, $depth = -1)
     {
-        foreach (self::searchR($folder, $pattern, $depth, \RecursiveIteratorIterator::CHILD_FIRST) as $file) {
+        foreach (self::searchR($folder, $pattern, $depth, RecursiveIteratorIterator::CHILD_FIRST) as $file) {
             if ($file->isFile()) {
                 unlink($file);
             } elseif ($file->isDir()) {

@@ -7,26 +7,31 @@
 
 namespace codexten\yii\rbac;
 
+use Yii;
+use yii\base\InvalidConfigException;
+use yii\rbac\BaseManager;
+
 /**
  * Class Migration
+ *
  * @package codexten\yii\rbac
  * @author Ashlin A <ashlin@entero.in>
  */
 class Migration extends \yii\db\Migration
 {
     /**
-     * @var string|\yii\rbac\BaseManager
+     * @var string|BaseManager
      */
     public $auth = 'authManager';
     
     
     /**
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidConfigException
      */
     public function init()
     {
         parent::init();
-        $this->auth = \Yii::$app->get('authManager');
+        $this->auth = Yii::$app->get('authManager');
     }
     
     /**

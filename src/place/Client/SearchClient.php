@@ -10,6 +10,7 @@
 namespace codexten\yii\place\Client;
 
 use GuzzleHttp\Exception\RequestException;
+use InvalidArgumentException;
 
 /**
  * Class Search handles places searching requests.
@@ -34,7 +35,7 @@ class SearchClient extends AbstractClient
      * This must be specified as latitude,longitude.
      * @param array $params optional parameters
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @throws RequestException if the request fails
      *
      * @return mixed|null
@@ -43,18 +44,18 @@ class SearchClient extends AbstractClient
     {
         $rankBy = trim(strtolower($this->getParamValue($params, 'rankby', 'prominence')));
         if (!in_array($rankBy, ['distance', 'prominence'], true)) {
-            throw new \InvalidArgumentException("Unrecognized rank '$rankBy'");
+            throw new InvalidArgumentException("Unrecognized rank '$rankBy'");
         }
         if ($rankBy == 'distance') {
             if (!isset($params['keyword']) && !isset($params['name']) && !isset($params['type'])) {
-                throw new \InvalidArgumentException(
+                throw new InvalidArgumentException(
                     'When using "rankby":"distance", you must specify at least one of the following: keyword, name, type.'
                 );
             }
             unset($params['radius']);
         }
         if ($rankBy == 'prominence' && !isset($params['radius'])) {
-            throw new \InvalidArgumentException('When using "rankby":"prominence" you must specify a radius.');
+            throw new InvalidArgumentException('When using "rankby":"prominence" you must specify a radius.');
         }
 
         $params['location'] = $location;
@@ -92,7 +93,7 @@ class SearchClient extends AbstractClient
      * radius is 50 000 meters.
      * @param array $params optional parameters
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @throws RequestException if the request fails
      *
      * @return mixed|null
@@ -100,7 +101,7 @@ class SearchClient extends AbstractClient
     public function radar($location, $radius, $params = [])
     {
         if (!isset($params['keyword']) && !isset($params['name']) && !isset($params['type'])) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'When using radar you must include at least one of keyword, name, or type.'
             );
         }

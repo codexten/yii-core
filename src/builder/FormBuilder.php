@@ -8,7 +8,9 @@
 
 namespace codexten\yii\builder;
 
-class FormBuilder extends \kartik\builder\Form
+use kartik\builder\Form;
+
+class FormBuilder extends Form
 {
 
 }

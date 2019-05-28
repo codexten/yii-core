@@ -6,11 +6,14 @@
  * Time: 10:16 PM
  */
 
+use yii\i18n\I18N;
+use yii\i18n\PhpMessageSource;
+
 return [
-    'class' => \yii\i18n\I18N::class,
+    'class' => I18N::class,
     'translations' => [
         'codexten' => [
-            'class' => \yii\i18n\PhpMessageSource::class,
+            'class' => PhpMessageSource::class,
             'basePath' => '@codexten/yii/messages',
         ],
         '*' => [

@@ -6,6 +6,9 @@
  * Time: 1:12 PM
  */
 
+use codexten\yii\components\EventManager;
+use codexten\yii\db\ActiveRecord;
+
 return [
     'name' => $params['app.name'],
     'language' => $params['app.language'],
@@ -24,7 +27,7 @@ return [
     'components' => [
         'db' => require(__DIR__ . '/_db.php'),
         'eventManager' => [
-            'class' => \codexten\yii\components\EventManager::class,
+            'class' => EventManager::class,
         ],
 //        'place' => [
 //            'class' => 'codexten\yii\place\Places',
@@ -46,7 +49,7 @@ return [
     'container' => [
         'definitions' => [
             \yii\db\ActiveRecord::class => [
-                'class' => \codexten\yii\db\ActiveRecord::class,
+                'class' => ActiveRecord::class,
             ],
         ],
     ],

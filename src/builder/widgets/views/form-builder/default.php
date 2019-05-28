@@ -6,9 +6,10 @@
  * Time: 3:33 PM
  */
 
+use codexten\yii\builder\widgets\FormBuilder;
 use codexten\yii\metronic\widgets\Portlet;
 
-/* @var $widget \codexten\yii\builder\widgets\FormBuilder */
+/* @var $widget FormBuilder */
 
 $widget = $this->context;
 ?>

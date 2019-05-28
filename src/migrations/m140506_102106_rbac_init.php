@@ -3,6 +3,7 @@
 namespace codexten\yii\migrations;
 
 use yii\base\InvalidConfigException;
+use yii\db\Migration;
 use yii\rbac\DbManager;
 use Yii;
 /**
@@ -11,7 +12,7 @@ use Yii;
  * @author Alexander Kochetov <creocoder@gmail.com>
  * @since 2.0
  */
-class m140506_102106_rbac_init extends \yii\db\Migration
+class m140506_102106_rbac_init extends Migration
 {
     /**
      * @throws yii\base\InvalidConfigException

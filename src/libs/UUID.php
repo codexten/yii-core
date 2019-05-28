@@ -8,6 +8,7 @@
 namespace codexten\yii\libs;
 
 use Yii;
+use yii\base\Exception;
 
 /**
  * UUID Generator Class provides static methods for creating or validating UUIDs.
@@ -22,7 +23,7 @@ class UUID
      * Creates an v4 UUID
      *
      * @return string
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public static function v4()
     {

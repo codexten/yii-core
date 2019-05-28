@@ -7,6 +7,8 @@
 
 namespace codexten\yii\helpers;
 
+use humhub\modules\space\models\Space;
+use humhub\modules\user\models\User;
 use Yii;
 use yii\base\InvalidParamException;
 use humhub\modules\content\components\ContentContainerActiveRecord;
@@ -99,9 +101,9 @@ class Html extends \yii\helpers\Html
      */
     public static function containerLink(ContentContainerActiveRecord $container, $options = [])
     {
-        if ($container instanceof \humhub\modules\space\models\Space) {
+        if ($container instanceof Space) {
             return static::a(static::encode($container->name), $container->getUrl(), $options);
-        } elseif ($container instanceof \humhub\modules\user\models\User) {
+        } elseif ($container instanceof User) {
             return static::a(static::encode($container->displayName), $container->getUrl(), $options);
         } else {
             throw new InvalidParamException('Content container type not supported!');
