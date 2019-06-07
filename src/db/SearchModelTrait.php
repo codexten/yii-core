@@ -8,6 +8,8 @@ use yii\base\Model;
 
 trait SearchModelTrait
 {
+    public $sort = [];
+
     /**
      * @inheritdoc
      */
