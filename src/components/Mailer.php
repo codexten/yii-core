@@ -9,10 +9,10 @@ namespace codexten\yii\components;
 
 use enyii\base\Component;
 use enyii\email\common\models\EmailTemplate;
-use function str_replace;
 use Yii;
 use yii\base\Exception;
 use yii\mail\MessageInterface;
+use function str_replace;
 
 /**
  * Class Mailer
@@ -29,6 +29,8 @@ class Mailer extends Component
      * @var string
      */
     public $code;
+
+    public $from = null;
 
     /**
      * @var mixed
@@ -121,7 +123,7 @@ class Mailer extends Component
     {
         $message = Yii::$app->mailer->compose();
         $message->setHtmlBody($this->getHtmlBody());
-        $message->setFrom(Yii::$app->params['mail.sender']);
+        $message->setFrom($this->from ?: Yii::$app->params['mail.sender']);
         $message->setTo($this->to);
         $message->setSubject($this->subject);
 
