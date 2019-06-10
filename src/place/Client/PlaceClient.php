@@ -8,7 +8,6 @@
 namespace codexten\yii\place\Client;
 
 use codexten\yii\helpers\ArrayHelper;
-use enyii\helpers\Json;
 use GuzzleHttp\Exception\RequestException;
 use InvalidArgumentException;
 
@@ -121,9 +120,9 @@ class PlaceClient extends AbstractClient
      *
      * @param string $reference The textual identifier that uniquely identifies this place
      *
+     * @return array
      * @throws RequestException if the request fails
      *
-     * @return array
      */
     public function delete($reference)
     {
