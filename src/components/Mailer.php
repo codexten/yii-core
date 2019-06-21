@@ -7,9 +7,8 @@
 
 namespace codexten\yii\components;
 
-use enyii\base\Component;
-use enyii\email\common\models\EmailTemplate;
 use Yii;
+use yii\base\Component;
 use yii\base\Exception;
 use yii\mail\MessageInterface;
 use function str_replace;
@@ -56,10 +55,14 @@ class Mailer extends Component
     public function init()
     {
         parent::init();
-        if (!Yii::$app->params['mail.template.path']) {
+        if ($this->templatePath == null) {
+            $this->templatePath = Yii::$app->params['mail.template.path'];
+        }
+        if ($this->templatePath === null) {
             throw new Exception('Template path Configuration not found');
         }
-        $this->templatePath = Yii::getAlias(Yii::$app->params['mail.template.path']);
+
+        $this->templatePath = Yii::getAlias($this->templatePath);
     }
 
 //    private function getHtmlBody()
@@ -84,7 +87,7 @@ class Mailer extends Component
     public function getHtmlBody()
     {
         $file = file_get_contents($this->templatePath . DIRECTORY_SEPARATOR . $this->code . '.html');
-        $this->subject = ucwords(str_replace('-', ' ', $this->code));
+        $this->subject = $this->subject ?: ucwords(str_replace('-', ' ', $this->code));
         $find = [];
         $replace = [];
         foreach ($this->params as $key => $value) {
@@ -123,7 +126,7 @@ class Mailer extends Component
     {
         $message = Yii::$app->mailer->compose();
         $message->setHtmlBody($this->getHtmlBody());
-        $message->setFrom($this->from ?: Yii::$app->params['mail.sender']);
+        $message->setFrom($this->from ?: Yii::$app->params['mailer.from']);
         $message->setTo($this->to);
         $message->setSubject($this->subject);
 
