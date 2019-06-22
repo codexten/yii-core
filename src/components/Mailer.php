@@ -35,6 +35,8 @@ class Mailer extends Component
      * @var mixed
      */
     public $to;
+
+    public $cc;
     /**
      * @var string
      */
@@ -128,6 +130,9 @@ class Mailer extends Component
         $message->setHtmlBody($this->getHtmlBody());
         $message->setFrom($this->from ?: Yii::$app->params['mailer.from']);
         $message->setTo($this->to);
+        if ($this->cc) {
+            $message->setCc($this->cc);
+        }
         $message->setSubject($this->subject);
 
         if ($this->attachments) {
