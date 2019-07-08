@@ -10,7 +10,8 @@
   "require": {
     "yiisoft/yii2": "~2.0.16||~2.0.0",
     "vlucas/phpdotenv": "v2.5.1",
-    "codexten/docs": "~2.0"
+    "codexten/docs": "~2.0.0",
+    "codexten/yii-widget-select2": "~2.0.0"
   },
   "autoload": {
     "psr-4": {
