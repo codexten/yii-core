@@ -74,37 +74,37 @@ class ActiveRecord extends \yii\db\ActiveRecord
         return true;
     }
 
-    /**
-     * @deprecated since 2.1.0
-     * @return array
-     */
-    public function getMeta()
-    {
-        return [
-            'canCreate' => $this->canCreate(),
-            'canUpdate' => $this->canUpdate(),
-            'canView' => $this->canView(),
-            'canDelete' => $this->canDelete(),
-        ];
-    }
-
-    /**
-     * @param array $fields
-     * @param array $expand
-     * @param bool $recursive
-     *
-     * @return array
-     * @deprecated 2.1.0
-     */
-    public function toArray(array $fields = [], array $expand = [], $recursive = true)
-    {
-        $data = parent::toArray($fields, $expand, $recursive);
-        if ($this->hasMethod('getMeta')) {
-            $data['_meta'] = $this->getMeta();
-        }
-
-        return $data;
-    }
+//    /**
+//     * @deprecated since 2.1.0
+//     * @return array
+//     */
+//    public function getMeta()
+//    {
+//        return [
+//            'canCreate' => $this->canCreate(),
+//            'canUpdate' => $this->canUpdate(),
+//            'canView' => $this->canView(),
+//            'canDelete' => $this->canDelete(),
+//        ];
+//    }
+//
+//    /**
+//     * @param array $fields
+//     * @param array $expand
+//     * @param bool $recursive
+//     *
+//     * @return array
+//     * @deprecated 2.1.0
+//     */
+//    public function toArray(array $fields = [], array $expand = [], $recursive = true)
+//    {
+//        $data = parent::toArray($fields, $expand, $recursive);
+//        if ($this->hasMethod('getMeta')) {
+//            $data['_meta'] = $this->getMeta();
+//        }
+//
+//        return $data;
+//    }
 
     /**
      * @inheritdoc
