@@ -9,6 +9,7 @@
 use codexten\yii\helpers\ArrayHelper;
 use codexten\yii\helpers\ColorHelper;
 use codexten\yii\module\user\models\User;
+use codexten\yii\rbac\helpers\RbacHelper;
 use yii\base\InvalidConfigException;
 use yii\base\InvalidParamException;
 use yii\base\Module;
@@ -104,8 +105,8 @@ if (!function_exists('env')) {
     /**
      * Gets the value of an environment variable.
      *
-     * @param  string $key
-     * @param  mixed $default
+     * @param string $key
+     * @param mixed $default
      *
      * @return mixed
      */
@@ -170,31 +171,11 @@ function actionId()
  * @param string $usedId
  *
  * @return bool
+ * @deprecated
  */
 function checkRole($role, $usedId = '')
 {
-    if (empty($usedId) && Yii::$app->user->isGuest) {
-        return false;
-    }
-
-    $usedId = $usedId ? $usedId : getMyId();
-    $auth = Yii::$app->authManager;
-
-    $roles = [];
-    if (!is_array($role)) {
-        $roles[] = $role;
-    } else {
-        $roles = $role;
-    }
-
-    foreach ($roles as $item) {
-        if ($auth->checkAccess($usedId, $item)) {
-            return true;
-        }
-    }
-
-    return false;
-
+    return RbacHelper::checkRole($role, $usedId);
 }
 
 
