@@ -2,11 +2,14 @@
 
 namespace codexten\yii\actions;
 
+use codexten\yii\db\SearchModelInterface;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\data\ActiveDataProvider;
 use yii\data\DataFilter;
 use yii\db\BaseActiveRecord;
+use yii\di\Instance;
+use yii\helpers\ArrayHelper;
 
 trait IndexActionTrait
 {
@@ -57,6 +60,7 @@ trait IndexActionTrait
      * @since 2.0.13
      */
     public $dataFilter;
+    public $searchModel;
     /**
      * @var callable a PHP callable that will be called to create the new search model.
      * If not set, [[newSearchModel()]] will be used instead.
@@ -82,6 +86,24 @@ trait IndexActionTrait
      */
     public $queryModifier;
 
+    public function init()
+    {
+        if ($this->searchModel) {
+            if (!is_array($this->searchModel)) {
+                $this->searchModel = ['class' => $this->searchModel];
+            }
+            $this->searchModel = ArrayHelper::merge(
+                [
+                    'modelClass' => $this->modelClass,
+                ],
+                $this->searchModel
+            );
+            $this->searchModel = Instance::ensure($this->searchModel, SearchModelInterface::class);
+        }
+        parent::init();
+    }
+
+
     /**
      * Creates new search model instance.
      *
@@ -98,7 +120,7 @@ trait IndexActionTrait
             return call_user_func([$this->controller, 'newSearchModel'], $this);
         }
 
-        return null;
+        return $this->searchModel;
     }
 
     /**
