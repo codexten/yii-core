@@ -56,7 +56,7 @@ trait SearchModelTrait
         return $modelClass::find();
     }
 
-    protected function addFilters(&$query)
+    protected function addFilters(ActiveQuery &$query)
     {
 
     }
