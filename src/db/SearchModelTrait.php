@@ -2,7 +2,6 @@
 
 namespace codexten\yii\db;
 
-
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
@@ -16,6 +15,9 @@ trait SearchModelTrait
     public $modelClass;
 
     public $addOnQuery;
+
+    public $querySearchFields = [];
+    public $q = '';
 
     /**
      * @inheritdoc
@@ -37,11 +39,19 @@ trait SearchModelTrait
             'sort' => $this->sort,
         ]);
 
+        if ($this->q && !empty($this->querySearchFields)) {
+            $querySearchFields = is_array($this->querySearchFields) ? $this->querySearchFields : [$this->querySearchFields];
+            foreach ($querySearchFields as $querySearchField) {
+                $query->andFilterWhere(['like', $querySearchField, $this->q]);
+            }
+        }
+
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
 
         $this->addFilters($query);
+
 
         return $dataProvider;
     }
