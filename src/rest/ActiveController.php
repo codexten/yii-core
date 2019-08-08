@@ -20,12 +20,14 @@ class ActiveController extends \yii\rest\ActiveController
         $actions = parent::actions();
         $actions['index']['class'] = IndexAction::class;
         $actions['index']['newSearchModel'] = $this->newSearchModel;
-        $actions['index']['searchModel'] = ArrayHelper::merge([
+        $searchModel = ArrayHelper::merge([
             'class' => SearchModel::class,
             'modelClass' => $this->modelClass,
-            'querySearchFields' => ['name'],
             'q' => \Yii::$app->request->get('q'),
         ], $this->searchModel);
+
+        $searchModel['querySearchFields'] = ArrayHelper::getValue($searchModel, 'querySearchFields', ['name']);
+        $actions['index']['searchModel'] = $searchModel;
 
         return $actions;
     }
