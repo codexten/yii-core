@@ -43,7 +43,6 @@ trait SearchModelTrait
             $querySearchFields = is_array($this->querySearchFields) ? $this->querySearchFields : [$this->querySearchFields];
             foreach ($querySearchFields as $querySearchField) {
                 $query->orOnCondition(['like', $querySearchField, $this->q]);
-
             }
         }
 
