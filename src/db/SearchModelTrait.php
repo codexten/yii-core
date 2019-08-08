@@ -40,10 +40,17 @@ trait SearchModelTrait
         ]);
 
         if ($this->q && !empty($this->querySearchFields)) {
+            $condition[] = 'or';
             $querySearchFields = is_array($this->querySearchFields) ? $this->querySearchFields : [$this->querySearchFields];
             foreach ($querySearchFields as $querySearchField) {
-                $query->orOnCondition(['like', $querySearchField, $this->q]);
+                $condition[] = ['like', $querySearchField, $this->q];
             }
+
+            if (!isset($condition[2])) {
+                $condition = $condition[1];
+            }
+
+            $query->andWhere($condition);
         }
 
         if (!($this->load($params) && $this->validate())) {
