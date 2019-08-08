@@ -42,7 +42,8 @@ trait SearchModelTrait
         if ($this->q && !empty($this->querySearchFields)) {
             $querySearchFields = is_array($this->querySearchFields) ? $this->querySearchFields : [$this->querySearchFields];
             foreach ($querySearchFields as $querySearchField) {
-                $query->andFilterWhere(['like', $querySearchField, $this->q]);
+                $query->orOnCondition(['like', $querySearchField, $this->q]);
+
             }
         }
 
