@@ -38,6 +38,5 @@ trait ByDateRangeQueryTrait
         }
 
         return $this;
-
     }
 }
