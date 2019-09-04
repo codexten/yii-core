@@ -27,13 +27,14 @@ trait ByDateRangeQueryTrait
     public function byTimestampRange($field, $dateRange)
     {
         if (!empty($dateRange) && strpos($dateRange, '-') !== false) {
-            list($start_date, $end_date) = explode(' - ', $dateRange);
-
+            list($startDate, $endDate) = explode(' - ', $dateRange);
+            $startDateTimestamp = strtotime($startDate);
+            $endDateTimestamp = strtotime($endDate);
             $this->andFilterWhere([
                 'between',
                 $field,
-                strtotime($start_date),
-                strtotime($end_date),
+                $startDateTimestamp,
+                $endDateTimestamp + (60 * 60 * 24),
             ]);
         }
 
