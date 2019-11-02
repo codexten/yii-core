@@ -5,6 +5,7 @@ namespace codexten\yii\db;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
+use yii\helpers\ArrayHelper;
 
 trait SearchModelTrait
 {
@@ -18,6 +19,13 @@ trait SearchModelTrait
 
     public $querySearchFields = [];
     public $q = '';
+    public $dataProvider = [
+        'class' => ActiveDataProvider::class,
+        'pagination' => [
+            'pageSize' => 20,
+        ],
+    ];
+    public $totalCountLimit = false;
 
     /**
      * @inheritdoc
@@ -34,10 +42,17 @@ trait SearchModelTrait
         if ($this->addOnQuery && is_callable($this->addOnQuery)) {
             call_user_func_array($this->addOnQuery, [&$query]);
         }
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'sort' => $this->sort,
-        ]);
+
+        /* @var $dataProvider ActiveDataProvider */
+        $dataProvider = \Yii::createObject(ArrayHelper::merge(
+            $this->dataProvider, [
+                'query' => $query,
+                'sort' => $this->sort,
+            ]
+        ));
+        if ($this->totalCountLimit) {
+            $dataProvider->setTotalCount($this->totalCountLimit);
+        }
 
         if ($this->q && !empty($this->querySearchFields)) {
             $condition[] = 'or';
