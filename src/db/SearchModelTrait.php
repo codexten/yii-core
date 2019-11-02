@@ -2,9 +2,11 @@
 
 namespace codexten\yii\db;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
+use yii\db\Query;
 use yii\helpers\ArrayHelper;
 
 trait SearchModelTrait
@@ -44,15 +46,12 @@ trait SearchModelTrait
         }
 
         /* @var $dataProvider ActiveDataProvider */
-        $dataProvider = \Yii::createObject(ArrayHelper::merge(
+        $dataProvider = Yii::createObject(ArrayHelper::merge(
             $this->dataProvider, [
                 'query' => $query,
                 'sort' => $this->sort,
             ]
         ));
-        if ($this->totalCountLimit) {
-            $dataProvider->setTotalCount($this->totalCountLimit);
-        }
 
         if ($this->q && !empty($this->querySearchFields)) {
             $condition[] = 'or';
@@ -73,6 +72,14 @@ trait SearchModelTrait
         }
 
         $this->addFilters($query);
+
+        if ($this->totalCountLimit) {
+            $countQuery = clone $query;
+            $countQuery->limit($this->totalCountLimit);
+            $totalCount = (new Query)->from($countQuery)->count('*');
+
+            $dataProvider->setTotalCount($totalCount);
+        }
 
 
         return $dataProvider;
