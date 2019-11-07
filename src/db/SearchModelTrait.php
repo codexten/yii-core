@@ -24,7 +24,7 @@ trait SearchModelTrait
     public $dataProvider = [
         'class' => ActiveDataProvider::class,
         'pagination' => [
-            'pageSize' => 20,
+            'pageSizeLimit' => [1,100],
         ],
     ];
     public $totalCountLimit = false;
